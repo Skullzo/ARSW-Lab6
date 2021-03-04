@@ -26,6 +26,48 @@
     }               
     ```
 
+A continuación, se incluyeron las siguientes dependencias de Gradle en el **build.gradle**, en el cual se agregaron los 'webjars' de jQuery y Bootstrap de la siguiente forma.
+
+```gradle
+group 'edu.eci.arsw'
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.BUILD-SNAPSHOT'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+	compile group: 'org.webjars', name: 'webjars-locator', version: '0.14'
+    compile group: 'org.webjars', name: 'bootstrap', version: '4.1.2'
+    compile group: 'org.webjars', name: 'jquery', version: '3.1.0'
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+```
+
 ## Front-End - Vistas
 
 1. Cree el directorio donde residirá la aplicación JavaScript. Como se está usando SpringBoot, la ruta para poner en el mismo contenido estático (páginas Web estáticas, aplicaciones HTML5/JS, etc) es:  
