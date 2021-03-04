@@ -26,7 +26,7 @@
     }               
     ```
 
-A continuación, se incluyeron las siguientes dependencias de Gradle en el **build.gradle**, en el cual se agregaron los 'webjars' de jQuery y Bootstrap de la siguiente forma.
+**A continuación, se incluyeron las siguientes dependencias de Gradle en el build.gradle, en el cual se agregaron los 'webjars' de jQuery y Bootstrap de la siguiente forma.**
 
 ```gradle
 group 'edu.eci.arsw'
