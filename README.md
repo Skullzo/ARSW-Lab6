@@ -238,7 +238,7 @@ dependencies {
 ```
 
 4. Suba la aplicación (mvn spring-boot:run), y rectifique:
-* Que la página sea accesible desde:
+   1. Que la página sea accesible desde:
    ```
    http://localhost:8080/index.html
    ```
@@ -247,7 +247,7 @@ dependencies {
 
 ![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.1.PNG)
     
-* Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
+   2. Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
 
 **Luego de subir la aplicación y haber ingresado a la URL ```http://localhost:8080/index.html```, se procede a abrir la consola de desarrollador del navegador, y como se puede ver a continuación, no aparece ningún mensaje de error 404, demostrando que las librerías de JavaScript se cargaron correctamente.**
 
@@ -446,6 +446,8 @@ return {
 5. Agregue al módulo 'app.js' una operación pública que permita actualizar el listado de los planos, a partir del nombre de su autor (dado como parámetro). Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
 
     * Tome el listado de los planos, y le aplique una función 'map' que convierta sus elementos a objetos con sólo el nombre y el número de puntos.
+
+    **dsadsa**
 
     * Sobre el listado resultante, haga otro 'map', que tome cada uno de estos elementos, y a través de jQuery agregue un elemento \<tr\> (con los respectvos \<td\>) a la tabla creada en el punto 4. Tenga en cuenta los [selectores de jQuery](https://www.w3schools.com/JQuery/jquery_ref_selectors.asp) y [los tutoriales disponibles en línea](https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-append-and-remove-table-row-dynamically). Por ahora no agregue botones a las filas generadas.
 
