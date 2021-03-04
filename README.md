@@ -117,7 +117,6 @@ dependencies {
         <a>Autor:</a>
         <input type="text" id="autor">
         <button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
-
         </br>
         </br>
         <body>
@@ -139,7 +138,7 @@ dependencies {
             </tr>
             </tbody>
         </table>
-        <label>Total user points : </label>
+        <label>Puntos totales de usuario:</label>
         <label id="puntosLabel">0</label>
         </br>
         </br>
@@ -193,7 +192,6 @@ dependencies {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
     <script src="/webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
     <script src="js/apimock.js"></script>
@@ -209,7 +207,6 @@ dependencies {
         <a>Autor:</a>
         <input type="text" id="autor">
         <button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
-
         </br>
         </br>
         <body>
@@ -231,7 +228,7 @@ dependencies {
             </tr>
             </tbody>
         </table>
-        <label>Total user points : </label>
+        <label>Puntos totales de usuario:</label>
         <label id="puntosLabel">0</label>
         </br>
         </br>
