@@ -120,7 +120,6 @@ dependencies {
         </br>
         </br>
         <body>
-        <label id="autorLabel">autor</label>
         <label>Planos del autor:</label>
         <table id="tabla">
             <thead>
@@ -210,7 +209,6 @@ dependencies {
         </br>
         </br>
         <body>
-        <label id="autorLabel">autor</label>
         <label>Planos del autor:</label>
         <table id="tabla">
             <thead>
