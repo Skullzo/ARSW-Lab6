@@ -26,47 +26,47 @@
     }               
     ```
 
-**A continuación, se incluyeron las siguientes dependencias de Gradle en el build.gradle, en el cual se agregaron los 'webjars' de jQuery y Bootstrap de la siguiente forma.**
+	**A continuación, se incluyeron las siguientes dependencias de Gradle en el build.gradle, en el cual se agregaron los 'webjars' de jQuery y Bootstrap de la siguiente forma.**
 
-```gradle
-group 'edu.eci.arsw'
+	```gradle
+	group 'edu.eci.arsw'
 
-buildscript {
-    ext {
-        springBootVersion = '2.0.0.BUILD-SNAPSHOT'
-    }
-    repositories {
-        mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
+	buildscript {
+	    ext {
+		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
+	    }
+	    repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	    }
+	    dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	    }
+	}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
 
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
-}
+	repositories {
+	    mavenCentral()
+	    maven { url "https://repo.spring.io/snapshot" }
+	    maven { url "https://repo.spring.io/milestone" }
+	}
 
-dependencies {
-	compile group: 'org.webjars', name: 'webjars-locator', version: '0.14'
-    	compile group: 'org.webjars', name: 'bootstrap', version: '4.1.2'
-    	compile group: 'org.webjars', name: 'jquery', version: '3.1.0'
-    	compile('org.springframework.boot:spring-boot-starter-web')
-    	testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-```
+	dependencies {
+		compile group: 'org.webjars', name: 'webjars-locator', version: '0.14'
+		compile group: 'org.webjars', name: 'bootstrap', version: '4.1.2'
+		compile group: 'org.webjars', name: 'jquery', version: '3.1.0'
+		compile('org.springframework.boot:spring-boot-starter-web')
+		testCompile group: 'junit', name: 'junit', version: '4.12'
+	}
+	```
 
 ## Front-End - Vistas
 
@@ -76,79 +76,79 @@ dependencies {
     src/main/resources/static
     ```
 
-**A continuación, se crea el directorio donde residirá la aplicación JavaScript en ```src/main/resources/static```, y asimismo, se crea la carpeta js en ese mismo directorio.**
+	**A continuación, se crea el directorio donde residirá la aplicación JavaScript en ```src/main/resources/static```, y asimismo, se crea la carpeta js en ese mismo directorio.**
 
-![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas1.PNG)
+	![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas1.PNG)
 
 2. Cree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del autor, botón de 'Get blueprints', campo donde se mostrará el nombre del autor seleccionado, [la tabla HTML](https://www.w3schools.com/html/html_tables.asp) donde se mostrará el listado de planos (con sólo los encabezados), y un campo en donde se mostrará el total de puntos de los planos del autor. Recuerde asociarle identificadores a dichos componentes para facilitar su búsqueda mediante selectores.
 
-**En el directorio ```src/main/resources/static```, se ha creado la página index.html, con título, campo para la captura del autor y botón de 'Get blueprints' o 'Obtener Planos' en español. También se habilitó un campo en donde se muestra el nombre del autor seleccionado, donde se muestra el listado de planos y el total de puntos de los planos del autor. También se han habilitado identificadores para facilitar su búsqueda mediante selectores. El código del HTML ha quedado de la siguiente forma.**
+	**En el directorio ```src/main/resources/static```, se ha creado la página index.html, con título, campo para la captura del autor y botón de 'Get blueprints' o 'Obtener Planos' en español. También se habilitó un campo en donde se muestra el nombre del autor seleccionado, donde se muestra el listado de planos y el total de puntos de los planos del autor. También se han habilitado identificadores para facilitar su búsqueda mediante selectores. El código del HTML ha quedado de la siguiente forma.**
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<style type="text/css">
-    form{
-        margin: 20px 0;
-    }
-    form input, button{
-        padding: 5px;
-    }
-    table{
-        width: 40%;
-        margin-bottom: 20px;
-        border-collapse: collapse;
-    }
-    table, th, td{
-        border: 1px solid #cdcdcd;
-    }
-    table th, table td{
-        padding: 10px;
-        text-align: left;
-    }
-</style>
-<head>
-    <title>Blueprints</title>
-</head>
-<body>
-<h1>Planos</h1>
-<div>
-    <div >
-        <a>Autor:</a>
-        <input type="text" id="autor">
-        <button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
-        </br>
-        </br>
-        <body>
-        <label>Planos del autor:</label>
-        <table id="tabla">
-            <thead>
-            <tr>
-                <th>Nombre del plano</th>
-                <th>Puntos</th>
-                <th>Abrir</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td id="nombreActor">La Monalisa</td>
-                <td id="puntos">25</td>
-                <td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
-            </tr>
-            </tbody>
-        </table>
-        <label>Puntos totales de usuario:</label>
-        <label id="puntosLabel">0</label>
-        </br>
-        </br>
-        <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
-        </canvas>
-        </body>
-    </div>
-</div>
-</body>
-</html>
-```
+	```html
+	<!DOCTYPE html>
+	<html lang="en">
+	<style type="text/css">
+	    form{
+		margin: 20px 0;
+	    }
+	    form input, button{
+		padding: 5px;
+	    }
+	    table{
+		width: 40%;
+		margin-bottom: 20px;
+		border-collapse: collapse;
+	    }
+	    table, th, td{
+		border: 1px solid #cdcdcd;
+	    }
+	    table th, table td{
+		padding: 10px;
+		text-align: left;
+	    }
+	</style>
+	<head>
+	    <title>Blueprints</title>
+	</head>
+	<body>
+	<h1>Planos</h1>
+	<div>
+	    <div >
+		<a>Autor:</a>
+		<input type="text" id="autor">
+		<button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
+		</br>
+		</br>
+		<body>
+		<label>Planos del autor:</label>
+		<table id="tabla">
+		    <thead>
+		    <tr>
+			<th>Nombre del plano</th>
+			<th>Puntos</th>
+			<th>Abrir</th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		    <tr>
+			<td id="nombreActor">La Monalisa</td>
+			<td id="puntos">25</td>
+			<td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
+		    </tr>
+		    </tbody>
+		</table>
+		<label>Puntos totales de usuario:</label>
+		<label id="puntosLabel">0</label>
+		</br>
+		</br>
+		<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+		</canvas>
+		</body>
+	    </div>
+	</div>
+	</body>
+	</html>
+	```
 
 3. En el elemento \<head\> de la página, agregue las referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap. 
     ```html
@@ -163,180 +163,182 @@ dependencies {
           href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
     ```
     
-**Para realizar el siguiente procedimiento, se modificó el HTML de la página creada en el numeral anterior, pero esta ves agregando la referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap, quedando el código del HTML de la siguiente forma.**
-    
-```html
-<!DOCTYPE html>
-<html lang="en">
-<style type="text/css">
-    form{
-        margin: 20px 0;
-    }
-    form input, button{
-        padding: 5px;
-    }
-    table{
-        width: 40%;
-        margin-bottom: 20px;
-        border-collapse: collapse;
-    }
-    table, th, td{
-        border: 1px solid #cdcdcd;
-    }
-    table th, table td{
-        padding: 10px;
-        text-align: left;
-    }
-</style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet"
-          href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
-    <title>Blueprints</title>
-</head>
-<body>
-<h1>Planos</h1>
-<div>
-    <div >
-        <a>Autor:</a>
-        <input type="text" id="autor">
-        <button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
-        </br>
-        </br>
-        <body>
-        <label>Planos del autor:</label>
-        <table id="tabla">
-            <thead>
-            <tr>
-                <th>Nombre del plano</th>
-                <th>Puntos</th>
-                <th>Abrir</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td id="nombreActor">La Monalisa</td>
-                <td id="puntos">25</td>
-                <td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
-            </tr>
-            </tbody>
-        </table>
-        <label>Puntos totales de usuario:</label>
-        <label id="puntosLabel">0</label>
-        </br>
-        </br>
-        <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
-        </canvas>
-        </body>
-    </div>
-</div>
-</body>
-</html>
-```
+	**Para realizar el siguiente procedimiento, se modificó el HTML de la página creada en el numeral anterior, pero esta ves agregando la referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap, quedando el código del HTML de la siguiente forma.**
+
+	```html
+	<!DOCTYPE html>
+	<html lang="en">
+	<style type="text/css">
+	    form{
+		margin: 20px 0;
+	    }
+	    form input, button{
+		padding: 5px;
+	    }
+	    table{
+		width: 40%;
+		margin-bottom: 20px;
+		border-collapse: collapse;
+	    }
+	    table, th, td{
+		border: 1px solid #cdcdcd;
+	    }
+	    table th, table td{
+		padding: 10px;
+		text-align: left;
+	    }
+	</style>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
+	    <script src="/webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+	    <link rel="stylesheet"
+		  href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
+	    <title>Blueprints</title>
+	</head>
+	<body>
+	<h1>Planos</h1>
+	<div>
+	    <div >
+		<a>Autor:</a>
+		<input type="text" id="autor">
+		<button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
+		</br>
+		</br>
+		<body>
+		<label>Planos del autor:</label>
+		<table id="tabla">
+		    <thead>
+		    <tr>
+			<th>Nombre del plano</th>
+			<th>Puntos</th>
+			<th>Abrir</th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		    <tr>
+			<td id="nombreActor">La Monalisa</td>
+			<td id="puntos">25</td>
+			<td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
+		    </tr>
+		    </tbody>
+		</table>
+		<label>Puntos totales de usuario:</label>
+		<label id="puntosLabel">0</label>
+		</br>
+		</br>
+		<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+		</canvas>
+		</body>
+	    </div>
+	</div>
+	</body>
+	</html>
+	```
 
 4. Suba la aplicación (mvn spring-boot:run), y rectifique:
-* Que la página sea accesible desde:
-   ```
-   http://localhost:8080/index.html
-   ```
+
+   1. Que la página sea accesible desde:
+   
+		```
+		http://localhost:8080/index.html
+		```
+
+		**Luego de subir la aplicación utilizando el comando ```mvn spring-boot:run```, en el navegador se ingresa la URL: ```http://localhost:8080/index.html```, y al acceder a esa URL se puede visualizar la página creada en HTML.**
+
+		![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.1.PNG)
     
-**Luego de subir la aplicación utilizando el comando ```mvn spring-boot:run```, en el navegador se ingresa la URL: ```http://localhost:8080/index.html```, y al acceder a esa URL se puede visualizar la página creada en HTML.**
+   2. Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
 
-![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.1.PNG)
-    
-* Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
+		**Luego de subir la aplicación y haber ingresado a la URL ```http://localhost:8080/index.html```, se procede a abrir la consola de desarrollador del navegador, y como se puede ver a continuación, no aparece ningún mensaje de error 404, demostrando que las librerías de JavaScript se cargaron correctamente.**
 
-**Luego de subir la aplicación y haber ingresado a la URL ```http://localhost:8080/index.html```, se procede a abrir la consola de desarrollador del navegador, y como se puede ver a continuación, no aparece ningún mensaje de error 404, demostrando que las librerías de JavaScript se cargaron correctamente.**
-
-![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.2.PNG)
+		![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.2.PNG)
 
 ## Front-End - Lógica
 
 1. Ahora, va a crear un Módulo JavaScript que, a manera de controlador, mantenga los estados y ofrezca las operaciones requeridas por la vista. Para esto tenga en cuenta el [patrón Módulo de JavaScript](https://toddmotto.com/mastering-the-module-pattern/), y cree un módulo en la ruta static/js/app.js .
 
-**A continuación, en la ruta ```static/js``` se crea un módulo JavaScript que a manera de controlador mantiene los estados y ofrece las operaciones requeridas por la vista, quedando de la siguiente forma.**
+	**A continuación, en la ruta ```static/js``` se crea un módulo JavaScript que a manera de controlador mantiene los estados y ofrece las operaciones requeridas por la vista, quedando de la siguiente forma.**
 
-![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Logica1.PNG)
+	![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Logica1.PNG)
 
 2. Copie el módulo provisto (apimock.js) en la misma ruta del módulo antes creado. En éste agréguele más planos (con más puntos) a los autores 'quemados' en el código.
 
-**Ahora copiamos el módulo provisto que es ```apimock.js``` en la misma ruta del módulo ```app.js```. Inicialmente el código del ```apimock.js``` sin realizarle ningún tipo de modificación es el siguiente.**
+	**Ahora copiamos el módulo provisto que es ```apimock.js``` en la misma ruta del módulo ```app.js```. Inicialmente el código del ```apimock.js``` sin realizarle ningún tipo de modificación es el siguiente.**
 
-```javascript
-var apimock = (function () {
+	```javascript
+	var apimock = (function () {
 
-    var mockdata = [];
+	    var mockdata = [];
 
-    mockdata["JhonConnor"] = [
-        {
-            author: "JhonConnor",
-            name: "house",
-            points: [
-                {
-                    x: 10,
-                    y: 20
-                },
-                {
-                    x: 15,
-                    y: 25
-                },
-                {
-                    x: 45,
-                    y: 25
-                }
-            ]
-        },
-        {
-            author: "JhonConnor",
-            name: "bike",
-            points: [
-                {
-                    x: 30,
-                    y: 35
-                },
-                {
-                    x: 40,
-                    y: 45
-                }
-            ]
-        }
-    ]
+	    mockdata["JhonConnor"] = [
+		{
+		    author: "JhonConnor",
+		    name: "house",
+		    points: [
+			{
+			    x: 10,
+			    y: 20
+			},
+			{
+			    x: 15,
+			    y: 25
+			},
+			{
+			    x: 45,
+			    y: 25
+			}
+		    ]
+		},
+		{
+		    author: "JhonConnor",
+		    name: "bike",
+		    points: [
+			{
+			    x: 30,
+			    y: 35
+			},
+			{
+			    x: 40,
+			    y: 45
+			}
+		    ]
+		}
+	    ]
 
-    mockdata['LexLuthor'] = [
-        {
-            author: 'LexLuthor',
-            name: 'kryptonite',
-            points: [
-                {
-                    x: 60,
-                    y: 65
-                },
-                {
-                    x: 70,
-                    y: 75
-                }
-            ]
-        }
-    ]
+	    mockdata['LexLuthor'] = [
+		{
+		    author: 'LexLuthor',
+		    name: 'kryptonite',
+		    points: [
+			{
+			    x: 60,
+			    y: 65
+			},
+			{
+			    x: 70,
+			    y: 75
+			}
+		    ]
+		}
+	    ]
 
-    return {
-        getBlueprintsByAuthor: function(author, callback) {
-            callback(null, mockdata[author]);
-        },
+	    return {
+		getBlueprintsByAuthor: function(author, callback) {
+		    callback(null, mockdata[author]);
+		},
 
-        getBlueprintsByNameAndAuthor: function(name, author, callback) {
-            blueprint = mockdata[author].find(function(blueprint) {
-                return blueprint.name == name
-            });
-            callback(null, blueprint)
-        }
-    }
+		getBlueprintsByNameAndAuthor: function(name, author, callback) {
+		    blueprint = mockdata[author].find(function(blueprint) {
+			return blueprint.name == name
+		    });
+		    callback(null, blueprint)
+		}
+	    }
 
-})();
-```
+	})();
+	```
 
 3. Agregue la importación de los dos nuevos módulos a la página HTML (después de las importaciones de las librerías de jQuery y Bootstrap):
     ```html
@@ -344,81 +346,81 @@ var apimock = (function () {
     <script src="js/app.js"></script>
     ```
 
-**Para realizar la respectiva importación de los dos nuevos módulos a la página HTML ya anteriormente creada, agregamos tanto el script de ```apimock.js``` como el script de ```app.js``` debajo de las importaciones de las librerías de jQuery y Bootstrap, quedando el código de ```index.html``` de la siguiente forma.**
-    
-```html
-<!DOCTYPE html>
-<html lang="en">
-<style type="text/css">
-    form{
-        margin: 20px 0;
-    }
-    form input, button{
-        padding: 5px;
-    }
-    table{
-        width: 40%;
-        margin-bottom: 20px;
-        border-collapse: collapse;
-    }
-    table, th, td{
-        border: 1px solid #cdcdcd;
-    }
-    table th, table td{
-        padding: 10px;
-        text-align: left;
-    }
-</style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
-    <script src="js/apimock.js"></script>
-    <script src="js/app.js"></script>
-    <link rel="stylesheet"
-          href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
-    <title>Blueprints</title>
-</head>
-<body>
-<h1>Planos</h1>
-<div>
-    <div >
-        <a>Autor:</a>
-        <input type="text" id="autor">
-        <button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
-        </br>
-        </br>
-        <body>
-        <label>Planos del autor:</label>
-        <table id="tabla">
-            <thead>
-            <tr>
-                <th>Nombre del plano</th>
-                <th>Puntos</th>
-                <th>Abrir</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td id="nombreActor">La Monalisa</td>
-                <td id="puntos">25</td>
-                <td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
-            </tr>
-            </tbody>
-        </table>
-        <label>Puntos totales de usuario:</label>
-        <label id="puntosLabel">0</label>
-        </br>
-        </br>
-        <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
-        </canvas>
-        </body>
-    </div>
-</div>
-</body>
-</html>
-```
+	**Para realizar la respectiva importación de los dos nuevos módulos a la página HTML ya anteriormente creada, agregamos tanto el script de ```apimock.js``` como el script de ```app.js``` debajo de las importaciones de las librerías de jQuery y Bootstrap, quedando el código de ```index.html``` de la siguiente forma.**
+
+	```html
+	<!DOCTYPE html>
+	<html lang="en">
+	<style type="text/css">
+	    form{
+		margin: 20px 0;
+	    }
+	    form input, button{
+		padding: 5px;
+	    }
+	    table{
+		width: 40%;
+		margin-bottom: 20px;
+		border-collapse: collapse;
+	    }
+	    table, th, td{
+		border: 1px solid #cdcdcd;
+	    }
+	    table th, table td{
+		padding: 10px;
+		text-align: left;
+	    }
+	</style>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
+	    <script src="/webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+	    <script src="js/apimock.js"></script>
+	    <script src="js/app.js"></script>
+	    <link rel="stylesheet"
+		  href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
+	    <title>Blueprints</title>
+	</head>
+	<body>
+	<h1>Planos</h1>
+	<div>
+	    <div >
+		<a>Autor:</a>
+		<input type="text" id="autor">
+		<button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
+		</br>
+		</br>
+		<body>
+		<label>Planos del autor:</label>
+		<table id="tabla">
+		    <thead>
+		    <tr>
+			<th>Nombre del plano</th>
+			<th>Puntos</th>
+			<th>Abrir</th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		    <tr>
+			<td id="nombreActor">La Monalisa</td>
+			<td id="puntos">25</td>
+			<td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
+		    </tr>
+		    </tbody>
+		</table>
+		<label>Puntos totales de usuario:</label>
+		<label id="puntosLabel">0</label>
+		</br>
+		</br>
+		<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+		</canvas>
+		</body>
+	    </div>
+	</div>
+	</body>
+	</html>
+	```
 
 4. Haga que el módulo antes creado mantenga de forma privada:
     * El nombre del autor seleccionado.
@@ -426,26 +428,49 @@ var apimock = (function () {
 
     Junto con una operación pública que permita cambiar el nombre del autor actualmente seleccionado.
 
-**Para hacer que el módulo mantenga de forma privada el nombre del autor seleccionado y el listado de nombre y tamaño de los planos del autor seleccionado, primero se realizan modificaciones al archivo ```apimock.js```, en el ```return```, se realiza el siguiente cambio para asimismo junto con una operación pública, permita cambiar el nombre del autor actualmente seleccionado.**
+	**Para hacer que el módulo mantenga de forma privada el nombre del autor seleccionado y el listado de nombre y tamaño de los planos del autor seleccionado, primero se realizan modificaciones al archivo ```apimock.js```, en el ```return```, se realiza el siguiente cambio para asimismo junto con una operación pública, permita cambiar el nombre del autor actualmente seleccionado.**
 
-```javascript
-return {
-        getBlueprintsByAuthor:function(name, callback) {
-            callback(
-                mockdata[name]
-            )
-        },
-        getBlueprintsByNameAndAuthor:function(autor,obra,callback){
-            callback(
-                mockdata[autor].filter(prueb => {return prueb.name === obra;})[0]
-            );
-        }
-}
-```
+	```javascript
+	return {
+		getBlueprintsByAuthor:function(name, callback) {
+		    callback(
+			mockdata[name]
+		    )
+		},
+		getBlueprintsByNameAndAuthor:function(autor,obra,callback){
+		    callback(
+			mockdata[autor].filter(prueb => {return prueb.name === obra;})[0]
+		    );
+		}
+	}
+	```
 
 5. Agregue al módulo 'app.js' una operación pública que permita actualizar el listado de los planos, a partir del nombre de su autor (dado como parámetro). Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
 
     * Tome el listado de los planos, y le aplique una función 'map' que convierta sus elementos a objetos con sólo el nombre y el número de puntos.
+
+	    **A continuación, se toma el listado de los planos, y se almacena en una variable llamada ```arreglo```, en la cual se le aplica una función 'map' a los planos o 'blueprints'. Luego se procede a convertir sus elementos a objetos con sólo el nombre y el número de puntos con una variable ```temporal``` que se encarga de almacenar el nombre  con su respectiva ```blueprint.key``` que representa la llave del nombre, y los puntos con su respectivo ```blueprint.value``` que respresenta los puntos de cada plano, agregándolos con un ```.append``` al ```arreglo```, para así retornar el valor total de los puntos con su respectivo autor. El código de la función queda de la siguiente forma.**
+
+		```javascript
+		var _funcModify = function (variable) {
+			if(variable != null){
+			    var arreglo = variable.map(function(blueprint){
+				return {key:blueprint.name, value:blueprint.points.length}
+			    })
+			    $("#tabla tbody").empty();
+			    arreglo.map(function(blueprint){
+				var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan(\''+blueprint.key+'\')">Open</td></tr>';
+				$("#tabla tbody").append(temporal);
+			    })
+
+			    var valorTotal = arreglo.reduce(function(total, valor){
+				return total.value + valor.value;
+			    })
+			    document.getElementById("autorLabel").innerHTML = author;
+			    document.getElementById("puntosLabel").innerHTML = valorTotal;
+			}
+		};
+		```
 
     * Sobre el listado resultante, haga otro 'map', que tome cada uno de estos elementos, y a través de jQuery agregue un elemento \<tr\> (con los respectvos \<td\>) a la tabla creada en el punto 4. Tenga en cuenta los [selectores de jQuery](https://www.w3schools.com/JQuery/jquery_ref_selectors.asp) y [los tutoriales disponibles en línea](https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-append-and-remove-table-row-dynamically). Por ahora no agregue botones a las filas generadas.
 
