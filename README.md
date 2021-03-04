@@ -449,28 +449,28 @@ return {
 
     **A continuación, se toma el listado de los planos, y se almacena en una variable llamada ```arreglo```, en la cual se le aplica una función 'map' a los planos o 'blueprints'. Luego se procede a convertir sus elementos a objetos con sólo el nombre y el número de puntos con una variable ```temporal``` que se encarga de almacenar el nombre  con su respectiva ```blueprint.key``` que representa la llave del nombre, y los puntos con su respectivo ```blueprint.value``` que respresenta los puntos de cada plano, agregándolos con un ```.append``` al ```arreglo```, para así retornar el valor total de los puntos con su respectivo autor. El código de la función queda de la siguiente forma.**
     
-```javascript
-var _funcModify = function (variable) {
-        if(variable != null){
-            var arreglo = variable.map(function(blueprint){
-                return {key:blueprint.name, value:blueprint.points.length}
-            })
-            $("#tabla tbody").empty();
-            arreglo.map(function(blueprint){
-                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan(\''+blueprint.key+'\')">Open</td></tr>';
-                $("#tabla tbody").append(temporal);
-            })
+	```javascript
+	var _funcModify = function (variable) {
+		if(variable != null){
+		    var arreglo = variable.map(function(blueprint){
+			return {key:blueprint.name, value:blueprint.points.length}
+		    })
+		    $("#tabla tbody").empty();
+		    arreglo.map(function(blueprint){
+			var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan(\''+blueprint.key+'\')">Open</td></tr>';
+			$("#tabla tbody").append(temporal);
+		    })
 
-            var valorTotal = arreglo.reduce(function(total, valor){
-                return total.value + valor.value;
-            })
-            document.getElementById("autorLabel").innerHTML = author;
-            document.getElementById("puntosLabel").innerHTML = valorTotal;
-        }
-};
-```
+		    var valorTotal = arreglo.reduce(function(total, valor){
+			return total.value + valor.value;
+		    })
+		    document.getElementById("autorLabel").innerHTML = author;
+		    document.getElementById("puntosLabel").innerHTML = valorTotal;
+		}
+	};
+	```
 
-   * Sobre el listado resultante, haga otro 'map', que tome cada uno de estos elementos, y a través de jQuery agregue un elemento \<tr\> (con los respectvos \<td\>) a la tabla creada en el punto 4. Tenga en cuenta los [selectores de jQuery](https://www.w3schools.com/JQuery/jquery_ref_selectors.asp) y [los tutoriales disponibles en línea](https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-append-and-remove-table-row-dynamically). Por ahora no agregue botones a las filas generadas.
+    * Sobre el listado resultante, haga otro 'map', que tome cada uno de estos elementos, y a través de jQuery agregue un elemento \<tr\> (con los respectvos \<td\>) a la tabla creada en el punto 4. Tenga en cuenta los [selectores de jQuery](https://www.w3schools.com/JQuery/jquery_ref_selectors.asp) y [los tutoriales disponibles en línea](https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-append-and-remove-table-row-dynamically). Por ahora no agregue botones a las filas generadas.
 
     * Sobre cualquiera de los dos listados (el original, o el transformado mediante 'map'), aplique un 'reduce' que calcule el número de puntos. Con este valor, use jQuery para actualizar el campo correspondiente dentro del DOM.
 
