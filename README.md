@@ -509,9 +509,29 @@
 
     * Sobre cualquiera de los dos listados (el original, o el transformado mediante 'map'), aplique un 'reduce' que calcule el número de puntos. Con este valor, use jQuery para actualizar el campo correspondiente dentro del DOM.
 
+		**Como tal en el ```app.js``` se implementó la funcion callback que junto con el nombre del mockdata se le pasa como parámetros a la función ```getBlueprintsByAuthor``` para que esta se ejecute de forma asíncrona el programa. Para esto, fue implementado de último el ```return```, quedando de la siguiente forma.**
+
+		```javascript
+		return {
+			    plansAuthor: function () {
+				author = document.getElementById("autor").value;
+				apimok.getBlueprintsByAuthor(author,_funcModify);
+
+			    },
+
+			    drawPlan: function(name) {
+				author = document.getElementById("autor").value;
+				obra = name;
+				apimok.getBlueprintsByNameAndAuthor(author,obra,_funcDraw);
+			    }
+		};
+		```
+
 6. Asocie la operación antes creada (la de app.js) al evento 'on-click' del botón de consulta de la página.
 
 7. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación HTML5/JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
+
+
 
 ## Para la próxima semana
 
