@@ -449,7 +449,7 @@
 
     * Tome el listado de los planos, y le aplique una función 'map' que convierta sus elementos a objetos con sólo el nombre y el número de puntos.
 
-	    **A continuación, se toma el listado de los planos, y se almacena en una variable llamada ```arreglo```, en la cual se le aplica una función 'map' a los planos o 'blueprints'. Luego se procede a convertir sus elementos a objetos con sólo el nombre y el número de puntos con una variable ```temporal``` que se encarga de almacenar el nombre  con su respectiva ```blueprint.key``` que representa la llave del nombre, y los puntos con su respectivo ```blueprint.value``` que respresenta los puntos de cada plano, agregándolos con un ```.append``` al ```arreglo```, para así retornar el valor total de los puntos con su respectivo autor. El código de la función queda de la siguiente forma.**
+	    **A continuación, en la función ```_funcModify``` se toma el listado de los planos, y se almacena en una variable llamada ```arreglo```, en la cual se le aplica una función 'map' a los planos o 'blueprints'. Luego se procede a convertir sus elementos a objetos con sólo el nombre y el número de puntos con una variable ```temporal``` que se encarga de almacenar el nombre  con su respectiva ```blueprint.key``` que representa la llave del nombre, y los puntos con su respectivo ```blueprint.value``` que respresenta los puntos de cada plano, agregándolos con un ```.append``` al ```arreglo```, para así retornar el valor total de los puntos con su respectivo autor. El código de la función queda de la siguiente forma.**
 
 		```javascript
 		var _funcModify = function (variable) {
@@ -473,6 +473,39 @@
 		```
 
     * Sobre el listado resultante, haga otro 'map', que tome cada uno de estos elementos, y a través de jQuery agregue un elemento \<tr\> (con los respectvos \<td\>) a la tabla creada en el punto 4. Tenga en cuenta los [selectores de jQuery](https://www.w3schools.com/JQuery/jquery_ref_selectors.asp) y [los tutoriales disponibles en línea](https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-append-and-remove-table-row-dynamically). Por ahora no agregue botones a las filas generadas.
+
+		**Ahora, se creó la función ```_funcDraw```, que se encarga de sobre el listado resultante, realizar otro 'map' que toma cada uno de los elementos, y a través de jQuery agrega un elemento \<tr\> con sus respectivos \<td\>, para así con la tabla creada en el punto 4, mapear cada uno de estos elementos. La función fue implementada de la siguiente forma.**
+
+		```javascript
+		var _funcDraw = function (vari) {
+			if (vari) {
+			    var lastx = null;
+			    var lasty = null;
+			    var actx = null;
+			    var acty = null;
+			    var c = document.getElementById("myCanvas");
+			    var ctx = c.getContext("2d");
+
+			    ctx.clearRect(0, 0, 500, 500);
+			    ctx.beginPath();
+
+			    vari.points.map(function (prue){
+				if (lastx == null) {
+				    lastx = prue.x;
+				    lasty = prue.y;
+				} else {
+				    actx = prue.x;
+				    acty = prue.y;
+				    ctx.moveTo(lastx, lasty);
+				    ctx.lineTo(actx, acty);
+				    ctx.stroke();
+				    lastx = actx;
+				    lasty = acty;
+				}
+			    });
+			}
+		}
+		```
 
     * Sobre cualquiera de los dos listados (el original, o el transformado mediante 'map'), aplique un 'reduce' que calcule el número de puntos. Con este valor, use jQuery para actualizar el campo correspondiente dentro del DOM.
 
