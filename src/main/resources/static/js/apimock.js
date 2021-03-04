@@ -1,8 +1,6 @@
-var apimock = (function () {
-
+var apimok = (function () {
     var mockdata = [];
-
-		mockdata["JhonConnor"] = [
+        mockdata["JhonConnor"] = [
         {
             author: "JhonConnor",
             name: "house",
@@ -35,12 +33,11 @@ var apimock = (function () {
                 }
             ]
         }
-    ]
-
-		mockdata['LexLuthor'] = [
+    ];
+		mockdata["LexLuthor"] = [
         {
-            author: 'LexLuthor',
-            name: 'kryptonite',
+            author: "LexLuthor",
+            name: "kryptonite",
             points: [
                 {
                     x: 60,
@@ -52,8 +49,7 @@ var apimock = (function () {
                 }
             ]
         }
-    ]
-
+    ];
     return {
         getBlueprintsByAuthor:function(name, callback) {
             callback(
@@ -66,5 +62,4 @@ var apimock = (function () {
             );
         }
     }
-
 })();
