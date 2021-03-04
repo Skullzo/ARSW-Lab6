@@ -426,6 +426,22 @@ var apimock = (function () {
 
     Junto con una operación pública que permita cambiar el nombre del autor actualmente seleccionado.
 
+**Para hacer que el módulo mantenga de forma privada el nombre del autor seleccionado y el listado de nombre y tamaño de los planos del autor seleccionado, primero se realizan modificaciones al archivo ```apimock.js```, en el ```return```, se realiza el siguiente cambio para asimismo junto con una operación pública, permita cambiar el nombre del autor actualmente seleccionado.**
+
+```javascript
+return {
+        getBlueprintsByAuthor:function(name, callback) {
+            callback(
+                mockdata[name]
+            )
+        },
+        getBlueprintsByNameAndAuthor:function(autor,obra,callback){
+            callback(
+                mockdata[autor].filter(prueb => {return prueb.name === obra;})[0]
+            );
+        }
+}
+```
 
 5. Agregue al módulo 'app.js' una operación pública que permita actualizar el listado de los planos, a partir del nombre de su autor (dado como parámetro). Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
 
