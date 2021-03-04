@@ -104,6 +104,7 @@
 13. Modifique el código de app.js de manera que sea posible cambiar entre el 'apimock' y el 'apiclient' con sólo una línea de código.
 
 14. Revise la [documentación y ejemplos de los estilos de Bootstrap](https://v4-alpha.getbootstrap.com/examples/) (ya incluidos en el ejercicio), agregue los elementos necesarios a la página para que sea más vistosa, y más cercana al mock dado al inicio del enunciado.
+<<<<<<< HEAD
 
 ## Autores
 [Alejandro Toro Daza](https://github.com/Skullzo)
@@ -113,3 +114,5 @@
 **©** Alejandro Toro Daza, David Fernando Rivera Vargas. Estudiantes de Ingeniería de Sistemas de la [Escuela Colombiana de Ingeniería Julio Garavito](https://www.escuelaing.edu.co/es/).
 
 Licencia bajo la [GNU General Public License](https://github.com/Skullzo/ARSW-Lab6/blob/main/LICENSE).
+=======
+>>>>>>> 757007f6559794c1503b8354026564c369619681
