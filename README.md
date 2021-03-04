@@ -246,6 +246,11 @@ dependencies {
     ```
     http://localhost:8080/index.html
     ```
+    
+**Luego de subir la aplicación utilizando el comando ```mvn spring-boot:run```, en el navegador se ingresa la URL: ```http://localhost:8080/index.html```, y al acceder a esa URL se puede visualizar la página creada en HTML.**
+
+![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.1.PNG)
+    
     2. Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
 
 ## Front-End - Lógica
