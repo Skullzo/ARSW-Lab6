@@ -120,7 +120,6 @@ dependencies {
         </br>
         </br>
         <body>
-        <label id="autorLabel">autor</label>
         <label>Planos del autor:</label>
         <table id="tabla">
             <thead>
@@ -210,7 +209,6 @@ dependencies {
         </br>
         </br>
         <body>
-        <label id="autorLabel">autor</label>
         <label>Planos del autor:</label>
         <table id="tabla">
             <thead>
@@ -242,11 +240,20 @@ dependencies {
 ```
 
 4. Suba la aplicación (mvn spring-boot:run), y rectifique:
-    1. Que la página sea accesible desde:
-    ```
-    http://localhost:8080/index.html
-    ```
-    2. Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
+* Que la página sea accesible desde:
+   ```
+   http://localhost:8080/index.html
+   ```
+    
+**Luego de subir la aplicación utilizando el comando ```mvn spring-boot:run```, en el navegador se ingresa la URL: ```http://localhost:8080/index.html```, y al acceder a esa URL se puede visualizar la página creada en HTML.**
+
+![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.1.PNG)
+    
+* Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
+
+**Luego de subir la aplicación y haber ingresado a la URL ```http://localhost:8080/index.html```, se procede a abrir la consola de desarrollador del navegador, y como se puede ver a continuación, no aparece ningún mensa de error 404, demostrando que las librerías de JavaScript se cargaron correctamente.**
+
+![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.2.PNG)
 
 ## Front-End - Lógica
 
