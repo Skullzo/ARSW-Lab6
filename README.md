@@ -531,7 +531,7 @@
 
 7. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación HTML5/JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
 
-	**Para verificar el funcionamiento de la aplicación, primero se inicia el servidor, y al ingresar el primer autor que es ```JhonConnor``` se muestra el nombre de los planos que son ```house``` y ```bike```, que fueron insertados en el ```apimock.js```, como se muestra a continuación.**
+	**Para verificar el funcionamiento de la aplicación, primero se inicia el servidor, y al ingresar el primer autor que es ```JhonConnor``` se muestra el nombre de los planos que son ```house``` y ```bike``` con su respectivo puntaje, valores que fueron insertados en el ```apimock.js```. La aplicación los retorna en la tabla de la siguiente forma.**
 
 	![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Logica7.1.PNG)
 
