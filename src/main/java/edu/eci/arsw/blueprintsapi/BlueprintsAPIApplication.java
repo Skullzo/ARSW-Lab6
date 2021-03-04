@@ -11,5 +11,4 @@ public class BlueprintsAPIApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BlueprintsAPIApplication.class, args);
 	}
-
 }
