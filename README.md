@@ -509,7 +509,7 @@
 
     * Sobre cualquiera de los dos listados (el original, o el transformado mediante 'map'), aplique un 'reduce' que calcule el número de puntos. Con este valor, use jQuery para actualizar el campo correspondiente dentro del DOM.
 
-		**Como tal en el ```app.js``` se implementó la funcion callback que junto con el nombre del mockdata se le pasa como parámetros a la función ```getBlueprintsByAuthor``` para que esta se ejecute de forma asíncrona el programa. Para esto, fue implementado de último el ```return```, quedando de la siguiente forma.**
+		**Como tal en el ```app.js``` se implementó la funcion callback que junto con el nombre del mockdata se le pasa como parámetros a la función ```getBlueprintsByAuthor``` para que esta se ejecute de forma asíncrona. Para esto, fue implementado de último el ```return```, quedando de la siguiente forma.**
 
 		```javascript
 		return {
@@ -531,7 +531,13 @@
 
 7. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación HTML5/JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
 
+**Para verificar el funcionamiento de la aplicación, primero se inicia el servidor, y al ingresar el primer autor que es ```JhonConnor``` se muestra el nombre de los planos que son ```house``` y ```bike```, que fueron insertados en el ```apimock.js```, como se muestra a continuación.**
 
+![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Logica7.1.PNG)
+
+**Para verificar que la aplicación también carga el nombre del plano y los puntos del autor ```LexLuthor```, este es ingresa en el campo provisto. Luego realizar clic en ```Obtener Planos```, se muestra el nombre del plano que es ```kryptonite``` con sus respectivos puntos, como se muestra a continuación.**
+
+![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Logica7.2.PNG)
 
 ## Para la próxima semana
 
