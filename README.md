@@ -242,7 +242,7 @@ dependencies {
 ```
 
 4. Suba la aplicación (mvn spring-boot:run), y rectifique:
-   1. Que la página sea accesible desde:
+   * Que la página sea accesible desde:
    ```
    http://localhost:8080/index.html
    ```
@@ -251,7 +251,7 @@ dependencies {
 
 ![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.1.PNG)
     
-   2. Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
+   * Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
 
 ## Front-End - Lógica
 
