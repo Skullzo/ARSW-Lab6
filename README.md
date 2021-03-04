@@ -80,11 +80,78 @@ dependencies {
 
 ![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas1.PNG)
 
-4. Cree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del autor, botón de 'Get blueprints', campo donde se mostrará el nombre del autor seleccionado, [la tabla HTML](https://www.w3schools.com/html/html_tables.asp) donde se mostrará el listado de planos (con sólo los encabezados), y un campo en donde se mostrará el total de puntos de los planos del autor. Recuerde asociarle identificadores a dichos componentes para facilitar su búsqueda mediante selectores.
+2. Cree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del autor, botón de 'Get blueprints', campo donde se mostrará el nombre del autor seleccionado, [la tabla HTML](https://www.w3schools.com/html/html_tables.asp) donde se mostrará el listado de planos (con sólo los encabezados), y un campo en donde se mostrará el total de puntos de los planos del autor. Recuerde asociarle identificadores a dichos componentes para facilitar su búsqueda mediante selectores.
 
-![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/ind.PNG)
+**En el directorio ```src/main/resources/static```, se ha creado la página index.html, con título, campo para la captura del autor y botón de 'Get blueprints' o 'Obtener Planos' en español. También se habilitó un campo en donde se muestra el nombre del autor seleccionado, donde se muestra el listado de planos y el total de puntos de los planos del autor. También se han habilitado identificadores para facilitar su búsqueda mediante selectores. El código del HTML ha quedado de la siguiente forma.**
 
-5. En el elemento \<head\> de la página, agregue las referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap. 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+    form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 40%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+    table, th, td{
+        border: 1px solid #cdcdcd;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+<head>
+    <title>Blueprints</title>
+</head>
+<body>
+<h1>Planos</h1>
+<div>
+    <div >
+        <a>Autor:</a>
+        <input type="text" id="autor">
+        <button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
+        </br>
+        </br>
+        <body>
+        <label id="autorLabel">autor</label>
+        <label>Planos del autor:</label>
+        <table id="tabla">
+            <thead>
+            <tr>
+                <th>Nombre del plano</th>
+                <th>Puntos</th>
+                <th>Abrir</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td id="nombreActor">La Monalisa</td>
+                <td id="puntos">25</td>
+                <td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
+            </tr>
+            </tbody>
+        </table>
+        <label>Puntos totales de usuario:</label>
+        <label id="puntosLabel">0</label>
+        </br>
+        </br>
+        <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+        </canvas>
+        </body>
+    </div>
+</div>
+</body>
+</html>
+```
+
+3. En el elemento \<head\> de la página, agregue las referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap. 
     ```html
     <head>
         <title>Blueprints</title>
@@ -96,9 +163,85 @@ dependencies {
         <link rel="stylesheet"
           href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
     ```
-![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/index.PNG)
+    
+**Para realizar el siguiente procedimiento, se modificó el HTML de la página creada en el numeral anterior, pero esta ves agregando la referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap, quedando el código del HTML de la siguiente forma.**
+    
+```html
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+    form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 40%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+    table, th, td{
+        border: 1px solid #cdcdcd;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <script src="js/apimock.js"></script>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
+    <title>Blueprints</title>
+</head>
+<body>
+<h1>Planos</h1>
+<div>
+    <div >
+        <a>Autor:</a>
+        <input type="text" id="autor">
+        <button type="button"  onclick="app.plansAuthor()">Obtener Planos</button>
+        </br>
+        </br>
+        <body>
+        <label id="autorLabel">autor</label>
+        <label>Planos del autor:</label>
+        <table id="tabla">
+            <thead>
+            <tr>
+                <th>Nombre del plano</th>
+                <th>Puntos</th>
+                <th>Abrir</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td id="nombreActor">La Monalisa</td>
+                <td id="puntos">25</td>
+                <td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
+            </tr>
+            </tbody>
+        </table>
+        <label>Puntos totales de usuario:</label>
+        <label id="puntosLabel">0</label>
+        </br>
+        </br>
+        <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+        </canvas>
+        </body>
+    </div>
+</div>
+</body>
+</html>
+```
 
-5. Suba la aplicación (mvn spring-boot:run), y rectifique:
+4. Suba la aplicación (mvn spring-boot:run), y rectifique:
     1. Que la página sea accesible desde:
     ```
     http://localhost:8080/index.html
