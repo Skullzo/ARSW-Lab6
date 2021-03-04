@@ -251,7 +251,7 @@ dependencies {
     
 * Al abrir la consola de desarrollador del navegador, NO deben aparecer mensajes de error 404 (es decir, que las librerías de JavaScript se cargaron correctamente).
 
-**Luego de subir la aplicación y haber ingresado a la URL ```http://localhost:8080/index.html```, se procede a abrir la consola de desarrollador del navegador, y como se puede ver a continuación, no aparece ningún mensa de error 404, demostrando que las librerías de JavaScript se cargaron correctamente.**
+**Luego de subir la aplicación y haber ingresado a la URL ```http://localhost:8080/index.html```, se procede a abrir la consola de desarrollador del navegador, y como se puede ver a continuación, no aparece ningún mensaje de error 404, demostrando que las librerías de JavaScript se cargaron correctamente.**
 
 ![img](https://github.com/Skullzo/ARSW-Lab6/blob/main/img/Vistas4.2.PNG)
 
