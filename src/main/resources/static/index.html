@@ -46,28 +46,28 @@
         <body>
         <label id="autorLabel">autor</label>
         <label>'s blueprints :</label>
-        <table id="tabla">
-            <thead>
+        <table style="width:100%">
             <tr>
-                <th>Nombre del plano</th>
-                <th>Puntos</th>
-                <th>Abrir</th>
+                <th>Blueprint name</th>
+                <th>Number of points</th>
+                <th>Open</th>
             </tr>
-            </thead>
-            <tbody>
             <tr>
-                <td id="nombreActor">Brad Pitt</td>
-                <td id="puntos">bradpitt@outlook.com</td>
-                <td type="button" value=nombreActor onclick="app.drawPlan()">Abrir</td>
+                <td>House</td>
+                <td>50</td>
+                <td>Open</td>
             </tr>
-            </tbody>
+            <tr>
+                <td>Gear</td>
+                <td>342</td>
+                <td></td>
+            </tr>
         </table>
-        <label>Total de puntos de usuario: </label>
+        <label>Total user points: </label>
         <label id="puntosLabel">0</label>
         </br>
         </br>
         <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
-
         </canvas>
         </body>
 
