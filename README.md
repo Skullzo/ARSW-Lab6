@@ -543,8 +543,59 @@
 
 8. A la página, agregue un [elemento de tipo Canvas](https://www.w3schools.com/html/html5_canvas.asp), con su respectivo identificador. Haga que sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, pero lo suficiente para poder 'dibujar' los planos.
 
+**Para agregar un elemento de tipo Canvas con su respectivo identificador, donde sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, y suficiente para poder dibujar los planos, se implementó en ```app.js``` la función ```_funcDraw``` para 'dibujar los planos', en los que se implementa un mapeo para poder realizar los respectivos dibujos tomando las coordenadas 'x' y 'y' para realizar el respectivo dibujo. La implementaci **ón de esta función quedó de la siguiente forma.**
+
+```javascript
+var _funcDraw = function (vari) {
+        if (vari) {
+            var lastx = null;
+            var lasty = null;
+            var actx = null;
+            var acty = null;
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+
+            ctx.clearRect(0, 0, 500, 500);
+            ctx.beginPath();
+
+            vari.points.map(function (prue){
+                if (lastx == null) {
+                    lastx = prue.x;
+                    lasty = prue.y;
+                } else {
+                    actx = prue.x;
+                    acty = prue.y;
+                    ctx.moveTo(lastx, lasty);
+                    ctx.lineTo(actx, acty);
+                    ctx.stroke();
+                    lastx = actx;
+                    lasty = acty;
+                }
+            });
+        }
+}
+```
+
 9. Al módulo app.js agregue una operación que, dado el nombre de un autor, y el nombre de uno de sus planos dados como parámetros, haciendo uso del método getBlueprintsByNameAndAuthor de apimock.js y de una función _callback_:
     * Consulte los puntos del plano correspondiente, y con los mismos dibuje consectivamente segmentos de recta, haciendo uso [de los elementos HTML5 (Canvas, 2DContext, etc) disponibles](https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_canvas_tut_path)* Actualice con jQuery el campo <div> donde se muestra el nombre del plano que se está dibujando (si dicho campo no existe, agruéguelo al DOM).
+
+**A continuación, se agrega una operación donde dado el nombre del autor y el nombre de uno de sus planos, este usa el método de ```getBlueprintsByNameAndAuthor``` de ```apimock.js```, la cual es implementada en el ```return``` de ```app.js``` para su respectiva actualización con jQuery del campo ```div``` donde se muestra el nombre del plano que se está dibujando.**
+
+```javascript
+return {
+            plansAuthor: function () {
+                author = document.getElementById("autor").value;
+                apimok.getBlueprintsByAuthor(author,_funcModify);
+
+            },
+
+            drawPlan: function(name) {
+                author = document.getElementById("autor").value;
+                obra = name;
+                apimok.getBlueprintsByNameAndAuthor(author,obra,_funcDraw);
+            }
+};
+```
 
 10. Verifique que la aplicación ahora, además de mostrar el listado de los planos de un autor, permita seleccionar uno de éstos y graficarlo. Para esto, haga que en las filas generadas para el punto 5 incluyan en la última columna un botón con su evento de clic asociado a la operación hecha anteriormente (enviándo como parámetro los nombres correspondientes).
 
@@ -555,6 +606,73 @@
 13. Modifique el código de app.js de manera que sea posible cambiar entre el 'apimock' y el 'apiclient' con sólo una línea de código.
 
 14. Revise la [documentación y ejemplos de los estilos de Bootstrap](https://v4-alpha.getbootstrap.com/examples/) (ya incluidos en el ejercicio), agregue los elementos necesarios a la página para que sea más vistosa, y más cercana al mock dado al inicio del enunciado.
+
+**Luego de haber realizado todas las modificaciones para poder implementar un Canvas capaz de realizar los respectivos dibujos de los planos, el código final de ```app.js```, junto con todas sus funciones implementadas teniendo en cuenta el enunciado para poder cumplir con todos los requerimientos, queda de la siguiente forma.**
+
+```javascript
+app= (function (){
+    var _funcModify = function (variable) {
+        if(variable != null){
+            var arreglo = variable.map(function(blueprint){
+                return {key:blueprint.name, value:blueprint.points.length}
+            })
+            $("#tabla tbody").empty();
+            arreglo.map(function(blueprint){
+                var temporal = '<tr><td id="nombreActor">'+blueprint.key+'</td><td id="puntos">'+blueprint.value+'</td><td type="button" onclick="app.drawPlan(\''+blueprint.key+'\')">Open</td></tr>';
+                $("#tabla tbody").append(temporal);
+            })
+
+            var valorTotal = arreglo.reduce(function(total, valor){
+                return total.value + valor.value;
+            })
+            document.getElementById("autorLabel").innerHTML = author;
+            document.getElementById("puntosLabel").innerHTML = valorTotal;
+        }
+    };
+
+    var _funcDraw = function (vari) {
+        if (vari) {
+            var lastx = null;
+            var lasty = null;
+            var actx = null;
+            var acty = null;
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+
+            ctx.clearRect(0, 0, 500, 500);
+            ctx.beginPath();
+
+            vari.points.map(function (prue){
+                if (lastx == null) {
+                    lastx = prue.x;
+                    lasty = prue.y;
+                } else {
+                    actx = prue.x;
+                    acty = prue.y;
+                    ctx.moveTo(lastx, lasty);
+                    ctx.lineTo(actx, acty);
+                    ctx.stroke();
+                    lastx = actx;
+                    lasty = acty;
+                }
+            });
+        }
+    }
+    return {
+            plansAuthor: function () {
+                author = document.getElementById("autor").value;
+                apimok.getBlueprintsByAuthor(author,_funcModify);
+
+            },
+
+            drawPlan: function(name) {
+                author = document.getElementById("autor").value;
+                obra = name;
+                apimok.getBlueprintsByNameAndAuthor(author,obra,_funcDraw);
+            }
+        };
+})();
+```
 
 ## Autores
 [Alejandro Toro Daza](https://github.com/Skullzo)
