@@ -543,7 +543,7 @@
 
 8. A la página, agregue un [elemento de tipo Canvas](https://www.w3schools.com/html/html5_canvas.asp), con su respectivo identificador. Haga que sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, pero lo suficiente para poder 'dibujar' los planos.
 
-	**Para agregar un elemento de tipo Canvas con su respectivo identificador, donde sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, y suficiente para poder dibujar los planos, se implementó en ```app.js``` la función ```_funcDraw``` para 'dibujar los planos', en los que se implementa un mapeo para poder realizar los respectivos dibujos tomando las coordenadas 'x' y 'y' para realizar el respectivo dibujo. La implementación de esta función quedó de la siguiente forma.**
+	**Para agregar un elemento de tipo Canvas con su respectivo identificador, donde sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, y suficiente para poder dibujar los planos, se implementó en ```app.js``` la función ```_funcDraw``` para 'dibujar los planos', en los que se implementa un mapeo para poder realizar los respectivos dibujos tomando las coordenadas ```x``` y ```y``` para realizar el respectivo dibujo. La implementación de esta función quedó de la siguiente forma.**
 
 	```javascript
 	var _funcDraw = function (vari) {
